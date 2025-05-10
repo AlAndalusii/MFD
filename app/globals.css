@@ -1,0 +1,24 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: 36 20% 94%;
+  --foreground: 0 0% 0%;
+}
+
+body {
+  background-color: #f1f0ea;
+  color: black;
+  font-feature-settings: "ss01" on, "ss02" on, "cv01" on, "cv03" on;
+  font-family: "Inter", sans-serif;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}

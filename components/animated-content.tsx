@@ -1,0 +1,142 @@
+"use client"
+
+import { useState, useEffect } from "react"
+import Image from "next/image"
+import { motion } from "framer-motion"
+import AnimatedLuxuryText from "@/components/animated-luxury-text"
+import ComingSoonForm from "@/components/coming-soon-form"
+
+export default function AnimatedContent({ logoSrc }: { logoSrc: string }) {
+  // State for the description typing animation
+  const [descriptionText, setDescriptionText] = useState("");
+  const fullDescription = "Crafted for those who lead with every step.";
+  
+  useEffect(() => {
+    let index = 0;
+    
+    // Type out the description letter by letter
+    const typingInterval = setInterval(() => {
+      if (index < fullDescription.length) {
+        setDescriptionText(fullDescription.substring(0, index + 1));
+        index++;
+      } else {
+        clearInterval(typingInterval);
+      }
+    }, 40); // Faster typing speed
+    
+    return () => clearInterval(typingInterval);
+  }, []);
+  
+  // Disclaimer typing effect
+  const [disclaimerText, setDisclaimerText] = useState("");
+  const fullDisclaimer = "By subscribing, you agree to our privacy policy and consent to receive updates.";
+  
+  useEffect(() => {
+    // Start this animation after a delay
+    const startDelay = setTimeout(() => {
+      let index = 0;
+      
+      const typingInterval = setInterval(() => {
+        if (index < fullDisclaimer.length) {
+          setDisclaimerText(fullDisclaimer.substring(0, index + 1));
+          index++;
+        } else {
+          clearInterval(typingInterval);
+        }
+      }, 20); // Very fast typing for small text
+      
+      return () => clearInterval(typingInterval);
+    }, 2500); // Start after description finishes
+    
+    return () => clearTimeout(startDelay);
+  }, []);
+
+  return (
+    <>
+      {/* Logo on top */}
+      <motion.div 
+        className="mb-14 w-96 h-48 relative"
+        initial={{ opacity: 0, scale: 0.9 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
+      >
+        <Image src={logoSrc} alt="MANDE" fill className="object-contain" priority />
+      </motion.div>
+      
+      {/* Animated luxury text */}
+      <div className="mb-6 text-center">
+        <AnimatedLuxuryText />
+      </div>
+
+      {/* Description with typing effect and subtle animated underline */}
+      <div className="relative mb-10 text-center">
+        <motion.p 
+          className="text-md md:text-lg font-poppins font-light text-center inline-block"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5, delay: 0.5 }}
+        >
+          {descriptionText}
+          <motion.span 
+            className="inline-block w-[2px] h-[0.9em] bg-black ml-1 align-middle"
+            animate={{ 
+              opacity: [1, 0, 1],
+              transition: { 
+                repeat: Infinity, 
+                duration: 0.8
+              }
+            }}
+            style={{ display: descriptionText.length === fullDescription.length ? 'none' : 'inline-block' }}
+          />
+        </motion.p>
+        
+        {/* Animated underline */}
+        <motion.div 
+          className="absolute -bottom-1 left-1/2 h-[1px] bg-gradient-to-r from-transparent via-amber-600/20 to-transparent"
+          initial={{ width: "0%", x: "-50%" }}
+          animate={{ 
+            width: descriptionText.length === fullDescription.length ? "100%" : "0%",
+            opacity: [0.2, 0.4, 0.2],
+            transition: { 
+              width: { duration: 1.5, delay: 2 },
+              opacity: { repeat: Infinity, duration: 3, ease: "easeInOut" }
+            }
+          }}
+        />
+      </div>
+
+      <motion.div 
+        className="w-full max-w-md"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ 
+          duration: 1, 
+          delay: 1.5,
+          ease: [0.22, 1, 0.36, 1]
+        }}
+      >
+        <ComingSoonForm />
+      </motion.div>
+
+      <motion.p 
+        className="text-xs font-poppins font-light text-gray-500 mt-6 text-center min-h-[2em]"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 0.8 }}
+        transition={{ duration: 0.5, delay: 2 }}
+      >
+        {disclaimerText}
+        <motion.span 
+          className="inline-block w-[2px] h-[0.9em] bg-gray-500 ml-1 align-middle"
+          animate={{ 
+            opacity: [1, 0, 1],
+            transition: { 
+              repeat: Infinity, 
+              duration: 0.8
+            }
+          }}
+          style={{ display: disclaimerText.length === fullDisclaimer.length ? 'none' : 'inline-block' }}
+        />
+      </motion.p>
+    </>
+  )
+} 
