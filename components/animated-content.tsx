@@ -8,7 +8,7 @@ import SubscriptionForm from "@/components/subscription-form"
 export default function AnimatedContent() {
   // State for the description typing animation
   const [descriptionText, setDescriptionText] = useState("");
-  const fullDescription = "Crafted for those who lead with every step.";
+  const fullDescription = "Designed in Silence. Revealed in Style";
   
   useEffect(() => {
     let index = 0;
