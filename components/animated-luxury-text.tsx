@@ -66,20 +66,36 @@ export default function AnimatedLuxuryText() {
         </motion.span>
       </div>
       
-      {/* Gold accent line that appears after text */}
-      <motion.div 
-        className="absolute bottom-0 left-0 w-full h-px bg-gradient-to-r from-amber-700/60 to-transparent"
-        initial={{ width: "0%" }}
-        animate={{ width: "100%" }}
-        transition={{ 
-          duration: 1.2, 
-          delay: 0.2,
-          ease: [0.25, 0.1, 0.25, 1] 
-        }}
-      />
+      {/* Enhanced gold accents */}
+      <div className="relative mt-1">
+        {/* Main gold accent line */}
+        <motion.div 
+          className="absolute bottom-0 left-0 w-full h-[2px] bg-gradient-to-r from-amber-700/70 to-transparent"
+          initial={{ width: "0%" }}
+          animate={{ width: "100%" }}
+          transition={{ 
+            duration: 1.2, 
+            delay: 0.2,
+            ease: [0.25, 0.1, 0.25, 1] 
+          }}
+        />
+        
+        {/* Secondary accent line */}
+        <motion.div 
+          className="absolute bottom-[-6px] left-[10%] w-[80%] h-[1px] bg-gradient-to-r from-transparent via-amber-600/40 to-transparent"
+          initial={{ width: "0%", left: "50%", x: "-50%" }}
+          animate={{ width: "80%", left: "10%", x: "0%" }}
+          transition={{ 
+            duration: 1.5, 
+            delay: 0.8,
+            ease: [0.25, 0.1, 0.25, 1] 
+          }}
+        />
+      </div>
       
+      {/* Enhanced glow effect */}
       <motion.div 
-        className="absolute -inset-1 bg-gradient-to-tr from-amber-200/10 via-amber-100/5 to-transparent rounded-sm blur-xl -z-10"
+        className="absolute -inset-2 bg-gradient-to-tr from-amber-200/15 via-amber-100/10 to-transparent rounded-sm blur-xl -z-10"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1, delay: 0.5 }}

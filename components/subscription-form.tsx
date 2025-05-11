@@ -89,7 +89,7 @@ export default function SubscriptionForm() {
         </div>
       </div>
 
-      {submitted && <p className="text-sm font-light text-amber-800 text-center mt-4">Thank you for subscribing.</p>}
+      {submitted && <p className="text-sm font-light text-amber-800 text-center mt-4">We'll notify you when we go live!</p>}
 
       <div className="w-full max-w-md mx-auto h-px bg-gradient-to-r from-transparent via-amber-700/20 to-transparent mt-2"></div>
     </div>
