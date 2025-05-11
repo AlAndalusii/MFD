@@ -6,7 +6,7 @@ import { motion } from "framer-motion"
 export default function AnimatedLuxuryText() {
   // State for typing animation
   const [displayText, setDisplayText] = useState("");
-  const fullText = "LOADING";
+  const fullText = "MANDE";
   
   // Typing effect
   useEffect(() => {
@@ -23,7 +23,7 @@ export default function AnimatedLuxuryText() {
           // When we reach the end, pause before erasing
           setTimeout(() => {
             direction = -1;
-          }, 1500);
+          }, 2000); // Longer pause to show full brand name
         }
       } else {
         // Erasing backward
@@ -34,22 +34,23 @@ export default function AnimatedLuxuryText() {
           // When fully erased, start typing again
           direction = 1;
           // Small pause before starting to type again
-          setTimeout(() => {}, 500);
+          setTimeout(() => {}, 800);
         }
       }
-    }, 150); // Speed of typing
+    }, 180); // Slightly slower typing for brand name
     
     return () => clearInterval(interval);
   }, []);
   
   return (
     <div className="relative text-center">
-      <div className="text-3xl md:text-4xl font-poppins font-light tracking-wider h-[1.2em] uppercase">
-        {/* Typing animation for "LOADING" */}
+      <div className="text-3xl md:text-4xl tracking-wider h-[1.2em] uppercase">
+        {/* Typing animation for "MANDE" */}
         <motion.span
           className="inline-block relative"
           initial={{ opacity: 0.8 }}
           animate={{ opacity: 1 }}
+          style={{ fontFamily: "var(--font-lemon-milk)" }}
         >
           {displayText}
           <motion.span 

@@ -1,8 +1,7 @@
 import type React from "react"
-import "./globals.css"
+import "../styles/globals.css"
 import type { Metadata } from "next"
 import { Poppins } from "next/font/google"
-import { ThemeProvider } from "@/components/theme-provider"
 
 const poppins = Poppins({ 
   subsets: ["latin"],
@@ -28,9 +27,7 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
       </head>
       <body className={`${poppins.variable} font-poppins`}>
-        <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false} disableTransitionOnChange>
-          {children}
-        </ThemeProvider>
+        {children}
       </body>
     </html>
   )
