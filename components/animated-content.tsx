@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react"
 import { motion } from "framer-motion"
 import AnimatedLuxuryText from "@/components/animated-luxury-text"
-import ComingSoonForm from "@/components/coming-soon-form"
+import SubscriptionForm from "@/components/subscription-form"
 
 export default function AnimatedContent() {
   // State for the description typing animation
@@ -62,7 +62,7 @@ export default function AnimatedContent() {
         {/* Description with typing effect and subtle animated underline */}
         <div className="relative mb-14 text-center">
           <motion.p 
-            className="text-md md:text-lg font-poppins font-light text-center inline-block"
+            className="text-md md:text-lg font-light text-center inline-block"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5, delay: 0.5 }}
@@ -107,12 +107,12 @@ export default function AnimatedContent() {
             ease: [0.22, 1, 0.36, 1]
           }}
         >
-          <ComingSoonForm />
+          <SubscriptionForm />
         </motion.div>
 
         {/* Disclaimer text */}
         <motion.p 
-          className="text-xs font-poppins font-light text-gray-500 mt-6 text-center min-h-[2em]"
+          className="text-xs font-light text-gray-500 mt-6 text-center min-h-[2em]"
           initial={{ opacity: 0 }}
           animate={{ opacity: 0.8 }}
           transition={{ duration: 0.5, delay: 2 }}

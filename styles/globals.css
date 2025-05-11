@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 body {
-  font-family: "Poppins", sans-serif;
+  font-family: var(--font-lemon-milk), sans-serif;
   background: linear-gradient(135deg, #f8f5e6 0%, #f9f6eb 50%, #f7f2e2 100%);
 }
 
@@ -110,12 +110,6 @@ body {
   body {
     @apply bg-background text-foreground;
   }
-}
-
-.poppins-black-italic {
-  font-family: "Poppins", sans-serif;
-  font-weight: 900;
-  font-style: italic;
 }
 
 /* Footer brand text */

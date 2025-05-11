@@ -18,7 +18,7 @@ const dustParticles = [
   { width: "3px", height: "3px", top: "90%", left: "60%", opacity: 0.2 },
 ];
 
-export default function ComingSoonPage() {
+export default function MainPage() {
   return (
     <main className={`${lemonMilk.variable} flex flex-col min-h-screen bg-background text-black gold-texture relative overflow-hidden`}>
       {/* Gold accent elements */}

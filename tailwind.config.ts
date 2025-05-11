@@ -18,7 +18,7 @@ const config: Config = {
     },
     extend: {
       fontFamily: {
-        poppins: ['var(--font-poppins)', 'sans-serif'],
+        'lemon-milk': ['var(--font-lemon-milk)', 'sans-serif'],
       },
       colors: {
         border: "hsl(var(--border))",
