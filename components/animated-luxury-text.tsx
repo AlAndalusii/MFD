@@ -3,44 +3,36 @@
 import { useState, useEffect } from "react"
 import { motion } from "framer-motion"
 
-export default function AnimatedLuxuryText() {
+export default function AnimatedLuxuryText({ onTypingComplete }: { onTypingComplete?: () => void }) {
   // State for typing animation
   const [displayText, setDisplayText] = useState("");
   const fullText = "MANDE";
   
-  // Typing effect
+  // Typing effect - only once, more deliberate typing
   useEffect(() => {
     let currentIndex = 0;
-    let direction = 1; // 1 for typing, -1 for erasing
     
     const interval = setInterval(() => {
-      if (direction === 1) {
-        // Typing forward
-        if (currentIndex < fullText.length) {
-          setDisplayText(fullText.substring(0, currentIndex + 1));
-          currentIndex++;
-        } else {
-          // When we reach the end, pause before erasing
-          setTimeout(() => {
-            direction = -1;
-          }, 2000); // Longer pause to show full brand name
+      if (currentIndex < fullText.length) {
+        setDisplayText(fullText.substring(0, currentIndex + 1));
+        currentIndex++;
+        
+        // When typing is complete, notify parent
+        if (currentIndex === fullText.length) {
+          if (onTypingComplete) {
+            // Small pause after typing completes before triggering the next elements
+            setTimeout(() => {
+              onTypingComplete();
+            }, 300);
+          }
         }
       } else {
-        // Erasing backward
-        if (currentIndex > 0) {
-          currentIndex--;
-          setDisplayText(fullText.substring(0, currentIndex));
-        } else {
-          // When fully erased, start typing again
-          direction = 1;
-          // Small pause before starting to type again
-          setTimeout(() => {}, 800);
-        }
+        clearInterval(interval);
       }
-    }, 180); // Slightly slower typing for brand name
+    }, 220); // Slower typing for more deliberate effect
     
     return () => clearInterval(interval);
-  }, []);
+  }, [onTypingComplete]);
   
   return (
     <div className="relative text-center">
@@ -62,6 +54,7 @@ export default function AnimatedLuxuryText() {
                 duration: 0.8
               }
             }}
+            style={{ display: displayText.length === fullText.length ? 'none' : 'inline-block' }}
           />
         </motion.span>
       </div>

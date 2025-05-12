@@ -13,6 +13,11 @@ export default function SubscriptionForm() {
   useEffect(() => {
     if (!beehiivContainerRef.current || beehiivLoaded) return
 
+    // Clear any existing content in the container to prevent duplicates
+    if (beehiivContainerRef.current.children.length > 0) {
+      beehiivContainerRef.current.innerHTML = '';
+    }
+
     const iframe = document.createElement('iframe')
     iframe.src = "https://embeds.beehiiv.com/8aaba681-29d2-47d7-9e55-b59135aa1170?slim=true"
     iframe.setAttribute('data-test-id', "beehiiv-embed")
@@ -64,6 +69,15 @@ export default function SubscriptionForm() {
       .beehiiv-embed button:hover {
         background-color: #78350f !important;
       }
+      /* Change button text from "Subscribe" to "Notify Me" */
+      .beehiiv-embed button::before {
+        content: "Notify Me" !important;
+        position: relative;
+        z-index: 10;
+      }
+      .beehiiv-embed button span {
+        display: none !important;
+      }
       @media (min-width: 640px) {
         .beehiiv-embed input {
           text-align: left !important;
@@ -73,7 +87,9 @@ export default function SubscriptionForm() {
     document.head.appendChild(style)
 
     return () => {
-      document.head.removeChild(style)
+      if (style.parentNode) {
+        document.head.removeChild(style)
+      }
     }
   }, [beehiivLoaded])
 
